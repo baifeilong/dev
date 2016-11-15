@@ -1,16 +1,13 @@
 package com.itrip.common.util;
 
-import java.io.IOException;
-import java.io.StringReader;
-import java.util.regex.Pattern;
-
 import org.apache.commons.lang.StringUtils;
 import org.htmlparser.Node;
 import org.htmlparser.lexer.Lexer;
 import org.htmlparser.nodes.TextNode;
 import org.htmlparser.util.ParserException;
-import org.wltea.analyzer.core.IKSegmenter;
-import org.wltea.analyzer.core.Lexeme;
+
+import java.io.StringReader;
+import java.util.regex.Pattern;
 
 /**
  * 字符串的帮助类，提供静态方法，不可以实例化。
@@ -198,20 +195,21 @@ public class StrUtils {
 	 */
 	public static String getKeywords(String keyword, boolean smart) {
 		StringReader reader = new StringReader(keyword);
-		IKSegmenter iks = new IKSegmenter(reader, smart);
-		StringBuilder buffer = new StringBuilder();
-		try {
-			Lexeme lexeme;
-			while ((lexeme = iks.next()) != null) {
-				buffer.append(lexeme.getLexemeText()).append(',');
-			}
-		} catch (IOException e) {
-		}
-		//去除最后一个,
-		if (buffer.length() > 0) {
-			buffer.setLength(buffer.length() - 1);
-		}
-		return buffer.toString();
+//		IKSegmenter iks = new IKSegmenter(reader, smart);
+//		StringBuilder buffer = new StringBuilder();
+//		try {
+//			Lexeme lexeme;
+//			while ((lexeme = iks.next()) != null) {
+//				buffer.append(lexeme.getLexemeText()).append(',');
+//			}
+//		} catch (IOException e) {
+//		}
+//		//去除最后一个,
+//		if (buffer.length() > 0) {
+//			buffer.setLength(buffer.length() - 1);
+//		}
+//		return buffer.toString();
+		return null;
 	}
 
 	/**
