@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta name="format-detection" content="telphone=no, email=no" />
+<meta name="browsermode" content="application">
+<meta content="no-cache" http-equiv="pragma">
+<meta content="no-cache" http-equiv="cache-control">
+<meta content="0" http-equiv="expires">
+<meta name="applicable-device" content="mobile">	  
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<meta name="keywords" content="${content.tagStr!'ITrip旅游攻略'}"/>
+<meta name="description" content="${content.description!'ITrip旅游攻略'}"/>
+<link rel="stylesheet" href="/${res}/css/mobile_common.css">
+<link rel="stylesheet" href="/${res}/css/mobile_strategy.css">
+<script src="${resSys}/front.js" type="text/javascript"></script>
+<script src="/${res}/js/jquery-1.9.1.min.js"></script>
+<script src="/${res}/js/jquery.lazyload.min.js"></script>
+<title>${content.title!'ITrip旅游攻略'}-iTrip爱去自由</title>
+</head>
+<body>
+  <!-- header -->
+  <header class="layout-header clearfix header">
+    <div class="layout-header-container details">
+      <i class="iconfont icon_back" id="backBtn">&#xe60b</i>
+      <h1 class="pos_r">
+        <div class="topchange"><span style="color:#fff;">攻略详情</span></div>
+        <a href="${site.url!}" class="iconfont back_home">&#xe62c;</a>
+      </h1>
+    </div>
+  </header>
+  <!-- header end -->
+  <section class="main bag-white">
+    <script>Cms.viewCount("${base}","${content.id}","view${content.id!}");</script>
+    <h1 class="title">${content.title!}</h1>
+    <div class="time">
+      <i class="iconfont">&#xe630;</i><a href="${site.url!}">iTrip旅游攻略</a>
+      <i class="iconfont">&#xe625;</i>${content.releaseDate?date}
+      <i class="iconfont">&#xe624;&nbsp;<span id="view${content.id!}"></span></i>
+    </div>
+	<div class="content1">${txtDetail!}</div>
+	<!-- itrip线路推荐begin -->
+	[@cms_itrip_travel count='5' key=content.tagStr sortType=3 sortOrder=0]
+    [#if tag_list?size > 0]
+	<div class="section fl-2 fl-3">
+	  <h2 class="blue-t fz-14"><span class="fl">相关旅游路线推荐</span></h2>
+	  <ul>
+	    [#list tag_list as a]
+		<li class="item">
+		  <a href="${a.url!'/'}" target="_blank">
+			<div class="img fl">
+			  <img data-original="${a.imgUrl!'/'}" class="lazy" alt="${a.title!}">
+			</div>
+			<p class="text-ellipsis fz-14 img-txt">${a.title!}</p>
+			<div class="oh">
+			  <span class="fr price">${a.price!'0'}</span>
+			</div>
+		  </a>
+	    </li>
+	    [/#list]
+	  </ul>
+	</div>
+	[/#if]
+    [/@cms_itrip_travel]
+    <!-- itrip线路推荐end -->
+    <!-- guide攻略推荐begin -->
+    [@cms_content_list count='10' orderBy='9' titLen='25' tagId=content.tagIds excludeId=content.id]
+    [#if tag_list?size > 0]
+    <div class="section fl-2">
+      <h2 class="blue-t fz-14">
+	    <span class="fl">相关旅游攻略推荐</span>
+      </h2>
+      <ul>
+        [#list tag_list as a]
+        <li class="item">
+	      <a href="${a.url!'/'}">
+		    <p class="text-ellipsis fz-14">${a.stitle!}</p>
+	      </a>
+        </li>
+        [/#list]
+	  </ul>
+    </div>
+    [/#if]
+    [/@cms_content_list]
+    <!-- guide攻略推荐end -->
+    <footer>亲，已经到底部了</footer>
+  </section>
+  <div class="gotop index-gotop">
+    <img src="http://m.itrip.com/image/gotop.png" alt="gotop">
+  </div>
+  <script src="/${res}/js/mobile_base.js"></script>
+  <script src="/${res}/js/mobile_custom.js"></script>
+  <script type="text/javascript">
+	$(function(){
+		index.init();
+		gotop();
+	})
+  </script>
+  <!-- 统计代码 -->
+  [#include "../footer/footer_common.html"/]
+</body>
+</html>

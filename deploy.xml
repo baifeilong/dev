@@ -1,0 +1,58 @@
+<project name="admin" basedir="." default="fileExists">
+	<property file="env/online.properties"/><!--va7987VAN-->
+	<target name="fileExists">
+		<echo>check tar file is exists ......</echo>
+		<condition property="fileIsExists">
+			<and>
+				<available file="${scp-tar}" />
+			</and>
+		</condition>
+		<antcall target="printError"></antcall>
+		<antcall target="needInputPwd"></antcall>
+	</target>
+	
+	<target name="printError" unless="fileIsExists">
+		<echo>tar file is not exists ...... ${scp-tar}</echo>
+	</target>
+	
+	
+	<target name="needInputPwd" if="fileIsExists">
+		<condition property="needInput">
+			<and>
+				<equals arg1="${inputpwd}" arg2="true"/>
+			</and>
+		</condition>
+		<antcall target="dist-input"></antcall>
+		<antcall target="dist"></antcall>
+	</target>
+	
+	
+	<target name="inputPwd" if="needInput">
+		<echo>old pwd ${defaltpwd}</echo>
+		<echo>tar file is exists ......</echo>
+		<input addproperty="password" message="输入密码" />
+	</target>
+	
+	<target name="dist-input" if="needInput" depends="inputPwd">
+		<echo>正在上传文件 ......</echo>
+		
+		<scp file="${scp-tar}" todir="${user}:${password}@${distaddr}:${distpath}" trust="true" verbose="true">
+		</scp>
+		<!--
+		<sshexec host="192.168.0.107" username="root" password="aoliday123" trust="true" command="/data/work/itrip_guide/./service.sh all;"> 
+		</sshexec>
+		 -->
+	</target>
+	
+	<target name="dist" unless="needInput">
+		<echo>正在上传文件 ......</echo>
+		
+		<scp file="${scp-tar}" todir="${user}:${defaltpwd}@${distaddr}:${distpath}" trust="true" verbose="true">
+		</scp>
+		<!--
+		<sshexec host="192.168.0.107" username="root" password="aoliday123" trust="true" command="/data/work/itrip_guide/./service.sh all;"> 
+		</sshexec>
+		 -->
+	</target>
+	
+</project>

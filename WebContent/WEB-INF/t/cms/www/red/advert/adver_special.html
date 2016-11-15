@@ -1,0 +1,23 @@
+<div class="page-banner">
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      [@cms_advertising id=9]
+      [#list tag_list as ad]
+      [#if ad.category=="image"]<!-- 广告类型-图片 -->
+      <a href="${(ad.attr.image_link)!}" target="${ad.attr.image_target!}" title="${ad.name!}" onclick="$.get('${base}/ad_click.jspx?id=${ad.id}');" class="swiper-slide" style="background-image: url(${ad.attr.image_url!});"></a>
+      [/#if]
+      [/#list]
+      [/@cms_advertising]
+    </div>
+    <div class="pagination"></div>
+  </div>
+</div>
+<script src="/${res}/js/jquery-1.9.1.min.js"></script>
+<script src="/${res}/js/idangerous.swiper.min.js"></script>
+<script>
+    var mySwiper = new Swiper('.swiper-container',{
+        pagination: '.pagination',
+        loop: true,
+        autoplay: 3000
+    });
+</script>

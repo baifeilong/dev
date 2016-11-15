@@ -1,0 +1,60 @@
+<div class="wrap pos_r">
+  <div class="mainHeader clearfix">
+    <div class="logo fl pos_r">
+      <a href="${site.url!}"><img src="/${res}/images/logo.png" alt="iTrip旅游攻略" style="margin:0px;"> </a>
+    </div>
+    <div class="fl siteTopSearch mt10">
+      <form id="searchForm" name="searchForm" method="get" action="${base}/search.jspx">
+        <input type="text"  name="q" class="siteTopSearchIpt" placeholder="请输入关键字" value=""/>
+        <a href="javascript:document.searchForm.submit();" class="searchBtn">搜索</a>
+      </form>
+    </div>
+    <div class="fr topContact blue horiz">
+      <ul>
+        <li class="tc"> <span class="icon icon_blue_phone"></span>
+          <p>联系客服</p>
+        </li>
+        <li class="phones">
+          <p>中国：400-008-8177 </p>
+          <p>澳洲：61-0280-0585-36 </p>
+          <p>澳洲：61-0280-0739-58 </p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="mainNav">
+  <div class="wrap">
+    <div class="horiz">
+      <ul style="overflow:visible">
+        <li class="pos_r haschild"><a class="main_link" href="${site.url!}">首 页</a></li>
+      	[@cms_channel_list]
+        [#list tag_list as c]
+        <li class="pos_r haschild [#if channel?? && c.path == channel.path]cur[/#if]">
+          <a class="main_link" href="${c.url!'/'}">${c.name!}</a>
+          [#if c.child?size > 0]
+          <div class="drop_box">
+          	[@cms_channel_list parentId=c.id]
+          	[#list tag_list as c1]
+            <dl>
+              <dt><a href="${c1.url!'/'}" style="color:#666;font-size:14px;padding:0">${c1.name!}</a></dt>
+              [#if c1.child?size > 0]
+              [@cms_channel_list parentId=c1.id]
+          	  [#list tag_list as c2]
+          	  <dd><a href="${c2.url!'/'}">${c2.name!}</a></dd>
+              [/#list]
+              [/@cms_channel_list]
+              [/#if]
+            </dl>
+            [/#list]
+            [/@cms_channel_list]
+          </div>
+          [/#if]
+        </li>
+        [/#list]
+        [/@cms_channel_list]
+      </ul>
+    </div>
+  </div>
+  <div class="back_b"></div>
+</div>

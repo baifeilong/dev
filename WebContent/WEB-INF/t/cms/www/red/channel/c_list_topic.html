@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>${channel.title!'ITrip旅游攻略'}</title>
+<meta name="keywords" content="${channel.keywords!'ITrip旅游攻略'}"/>
+<meta name="description" content="${channel.description!'ITrip旅游攻略'}"/>
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="expires" content="0" />
+<meta http-equiv="X-UA-Compatible" content="edge" />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=1200, initial-scale=0.8"/>
+<meta name="applicable-device" content="pc">
+<meta property="qc:admins" content="35532376716142106375" />
+<link rel="stylesheet" type="text/css" href="/${res}/css/it_reset.css">
+<link rel="stylesheet" type="text/css" href="/${res}/css/it_index_aus.css">
+<script src="${resSys}/jquery.js" type="text/javascript"></script>
+</head>
+<body>
+[#include "../include/top.html"/]
+<div class="wrap">
+  <div class="mt20 clearfix">
+    <div class="left fl">
+      <div class="ck-panel-title">城市列表</div>
+      <ul>
+        [@cms_channel_list parentId=parent.id]
+        [#list tag_list as pc]
+        <li>
+          <a href="${pc.url!'/'}" class="tit-city f14 [#if pc.id == channel.id]blue[/#if]">${pc.name!}</a>
+          [#if pc.child?size > 0]<b></b>[/#if]
+          <dl>
+          	[@cms_channel_list parentId=pc.id]
+            [#list tag_list as c]
+            <dd><a href="${c.url!'/'}">${c.name!}</a></dd>
+            [/#list]
+            [/@cms_channel_list]
+          </dl>  
+        </li>
+        [/#list]
+        [/@cms_channel_list]
+      </ul>
+    </div>
+    <div class="center fl ml10">
+      <div class="position">当前位置：<a href="${base}/">首页</a> > [#list channel.nodeList as n]<a href="${n.url}">${n.name}</a>[#if n_has_next] > [/#if][/#list]</div>
+      <div class="list_city clearfix">
+        [@cms_content_page count='10' orderBy='4' channelId=channel.id channelOption='1' dateFormat='yyyy-MM-dd']
+        <ul class="clearfix">
+          [#list tag_pagination.list as a]
+          <li>
+            <a href="${a.url!}" target="_blank">
+              <img src="${a.titleImgUrl!}" width="108" height="86" class="fl">
+              <div class="list_info fl ml15 w570">
+                <p class="tit mt10">[@text_cut s=a.title len=30 append='...'/]</p>
+                <p class="intro mt5">[@text_cut s=a.description len=143 append='...'/]</p>
+              </div>
+            </a> 
+          </li>
+          [/#list]
+        </ul>
+        <div class="pagenation tr hide pager" style="display: block;">[@cms_pagination sysPage='1'/]</div>
+        [/@cms_content_page]
+      </div>
+    </div>
+    <!-- 广告 -->
+    [#include "../advert/adver_channel.html"/]
+  </div>
+</div>
+[#include "../footer/footer_list_topic.html"/]
+<script>
+  $(function(){
+    $(".left ul li:last-child").find(".tit-city,dd:last-child").css("border-bottom","0px");
+    $(".left ul li").eq(0).find("dl").show();
+    $(".left ul li").eq(0).find("b").addClass('up');
+    $(".left ul").find("li").click(function(){
+      var dom = $(this).find("dl");
+      var arrow = $(this).find("b");
+      var length = $(".left ul").find("li").length -1;
+      var index = $(this).index();
+      $(".left ul li:last-child").find(".tit-city,dd:last-child").css("border-bottom","0px")
+      if(dom.is(":hidden")){
+        $(".left ul").find("dl").hide(200);
+        $(".left ul").find("b").removeClass('up')
+        dom.show(200);
+        arrow.addClass('up')
+        if(index == length){
+          $(this).find(".tit-city").css("border-bottom","1px solid #e7e7e7")
+        }
+      }
+      else{
+        dom.hide(200);
+        arrow.removeClass('up')
+        if(index == length){
+          $(this).find(".tit-city").css("border","0px")
+        }
+      }
+    });
+  })
+</script>
+</body>
+</html>

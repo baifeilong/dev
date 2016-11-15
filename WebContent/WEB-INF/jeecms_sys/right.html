@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>jeecms-left</title>
+<#include "/jeecms_sys/head.html"/>
+</head>
+<body>
+<div class="box-positon">
+  <h1><@s.m "global.position"/>: <@s.m "global.admin.home"/> - <@s.m "global.admin.index"/></h1>
+</div>
+<div class="body-box">
+  <div class="welcom-con">
+    <div class="we-txt" style="height: 100px;">
+      <p>
+                  欢迎使用ITrip旅游攻略平台！<br />
+                  您上次登录的时间是：${user.lastLoginTime?string('yyyy-MM-dd')}<br />
+                  已用内存：<span style="color:#0078ff;">${(usedMemory/1024/1024)?string("0.##")}MB</span>&nbsp;&nbsp;&nbsp;&nbsp;剩余内存：<span style="color:#ff8400;">${(useableMemory/1024/1024)?string("0.##")}MB </span>&nbsp;&nbsp;&nbsp;&nbsp;最大内存：<span style="color:#00ac41;">${(maxMemory/1024/1024)?string("0.##")}MB</span>
+      </p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>${channel.title!'ITrip旅游攻略'}</title>
+<meta name="keywords" content="${channel.keywords!'ITrip旅游攻略'}"/>
+<meta name="description" content="${channel.description!'ITrip旅游攻略'}"/>
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="expires" content="0" />
+<meta http-equiv="X-UA-Compatible" content="edge" />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=1200, initial-scale=0.8"/>
+<meta name="applicable-device" content="pc">
+<meta property="qc:admins" content="35532376716142106375" />
+<link rel="stylesheet" type="text/css" href="/${res}/css/it_reset.css">
+<link rel="stylesheet" type="text/css" href="/${res}/css/it_index_aus.css">
+</head>
+<body>
+[#include "../include/top.html"/]
+<div class="mainbox">
+  <div class="position">当前位置：<a href="${base}/">首页</a> > <a href="${base}/">网站地图</a></div>
+  <h1>网站地图</h1>
+  <div class="top-nav">
+    <ul>
+      [@cms_channel_list]
+      [#list tag_list as c]
+      <li><a href="${c.url!'/'}">${c.name!}</a></li>
+      [/#list]
+      [/@cms_channel_list]
+    </ul>
+  </div>
+  [@cms_channel_list]
+  [#list tag_list as c]
+  <div class="second-nav mt15">
+    <p>${c.name!}</p>
+    <ul>
+    [#if c.child?size > 0]
+   	[@cms_channel_list parentId=c.id]
+   	[#list tag_list as c1]
+   	  <li><a href="${c1.url!'/'}">${c1.name!}</a></li>
+      [#if c1.child?size > 0]
+      [@cms_channel_list parentId=c1.id]
+      [#list tag_list as c2]
+        <li><a href="${c2.url!'/'}">${c2.name!}</a></li>
+      [/#list]
+      [/@cms_channel_list]
+      [/#if]
+    [/#list]
+    [/@cms_channel_list]
+    [/#if]
+    </ul>
+  </div>
+  [/#list]
+  [/@cms_channel_list]
+</div>
+[#include "../footer/footer_common.html"/]
+</body>
+</html>

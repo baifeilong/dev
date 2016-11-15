@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>${channel.title!'ITrip旅游攻略'}</title>
+<meta name="keywords" content="${channel.keywords!'ITrip旅游攻略'}"/>
+<meta name="description" content="${channel.description!'ITrip旅游攻略'}"/>
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="expires" content="0" />
+<meta http-equiv="X-UA-Compatible" content="edge" />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=1200, initial-scale=0.8"/>
+<meta name="applicable-device" content="pc">
+<meta property="qc:admins" content="35532376716142106375" />
+<link rel="stylesheet" type="text/css" href="/${res}/css/it_reset.css">
+<link rel="stylesheet" type="text/css" href="/${res}/css/it_index_aus.css">
+<script src="${resSys}/front.js" type="text/javascript"></script>
+<script src="${resSys}/jquery.js" type="text/javascript"></script>
+</head>
+<body>
+[#include "../include/top.html"/]
+<div class="wrap">
+  <div class="mt15">
+    <div class="ck-wrap">
+      <div class="ck-top">
+        <h1 class="fl mt5">澳洲旅游攻略</h1>
+        <ul>
+          <li class="hover"><a href="http://www.itrip.com/aodaliya/10627" target="_blank">澳洲旅游新品特价</a></li>
+          <li><a href="http://www.itrip.com/aodaliya/1520" target="_blank">澳大利亚抱考拉</a></li>
+          <li><a href="http://www.itrip.com/huisendi/561" target="_blank">心形大堡礁</a></li>
+          <li><a href="http://www.itrip.com/huodong/ausguide" target="_blank">澳洲必游景点</a></li>
+          <li class="last"><a href="http://www.itrip.com/aodaliya/1034" target="_blank">攀登悉尼海港大桥</a></li>
+        </ul>
+      </div>
+      <div style="clear:both;"></div>
+      <!-- 顶部推荐图片begin -->
+      <div class="ck-gallary oh">
+        [@cms_content_list count='7' orderBy='8' titLen='50' channelOption='1' channelId=channel.id]
+        [#list tag_list as bean]
+      	[#if bean_index == 0]
+      	<!-- 顶部推荐左边一个大图begin -->
+        <div class="ck-left">
+          <a class="" href="${bean.url!'/'}" target="_blank">
+            <img src="${bean.titleImgUrl!}" alt="${bean.title!}" style="width: 468px;height: 376px;">
+          </a>
+          <p class="txt_back"></p>
+          <p class="ck-text"><a href="${bean.url!'/'}" target="_blank">[@text_cut s=bean.title len=28 append='...'/]</a></p>
+        </div>
+        <!-- 顶部推荐左边 1 个大图end -->
+        [#else]
+        <!-- 顶部推荐右边 6 个小图begin -->
+        <div class="ck-right">
+          <ul>
+            <li>
+              <div class="ck-imgtext">
+                <a class="" href="${bean.url!'/'}" target="_blank">
+                  <img src="${bean.titleImgUrl!}" alt="${bean.title!}" style="width: 224px;height: 160px;">
+                </a>
+                <p class="txt_back"></p>
+                <p class="ck-text"><a href="${bean.url!'/'}" target="_blank">[@text_cut s=bean.title len=15 append='...'/]</a></p>
+              </div>
+              <p><a href="${bean.url!'/'}" target="_blank">[@text_cut s=bean.title len=16 append='...'/]</a></p>
+            </li>
+          </ul>
+        </div>
+        <!-- 顶部推荐右边六个小图end -->
+        [/#if]
+        [/#list]
+        [/@cms_content_list]
+      </div>
+      <!-- 顶部推荐图片end -->
+      <!-- 中间部分栏目列表begin -->
+      [@cms_channel_list parentId=channel.id]
+      [#list tag_list as c]
+      <div class="gl clearfix">
+        <div class="glLeft fl">
+          <h1 class="black oh f24">
+            <a href="${c.url!}" class="fl" target="_blank">${c.name!'攻略'}</a>
+            <a href="${c.url!}" class="fr f12 blue mt10 mr10" target="_blank">更多></a>
+          </h1>
+          <ul class="note_ul">
+          	[@cms_content_list count='5' orderBy='7' titLen='50' channelOption='1' channelId=c.id]
+          	[#list tag_list as a]
+          	<script >Cms.viewCount("${base}","${a.id}","view${a.id!}");</script>
+            <li class="note_li">
+              <div class="note_tit title clearfix">
+                <h2 class="fl"><a data-beacon="hot_youji_1_1" href="${a.url!'/'}" target="_blank" class="c33">${a.title!'攻略'}</a></h2>
+                <ul class="fr">
+                  <li class="numTab">
+                    <span class="scan icon_total fl"></span>
+                    <span id="view${a.id!}"></span>
+                  </li>
+                </ul>
+              </div>
+              <dl class="cont_dl clearfix">
+                <dt class="detit grey fl">摘要：</dt>
+                <dd>[@text_cut s=a.description len=150 append='...'/]</dd>
+              </dl>
+              <ul class="imgul">
+                [@cms_content_img_url count='4' text=a.txtDetail]
+                [#list url_list as url]
+                <li class="imgli"><a data-beacon="hot_youji_1_1" href="${a.url!'/'}" target="_blank"><img class="" width="200" height="150" ${url!'/'} style="display: inline;"></a></li>
+                [/#list]
+                [/@cms_content_img_url]
+              </ul>
+            </li>
+            [/#list]
+            [/@cms_content_list]
+          </ul>
+        </div>
+        <div class="glRight fr">
+          <div class="glTitle f20 oh">
+            <a data-beacon="hot_youji_1_1" href="${c.url!'/'}" class="c33 fl" target="_blank">${c.name!'攻略'}</a>
+            <a href="${c.url!}" class="fr f12 blue mt5" target="_blank">更多></a>
+          </div>
+          <div class="list_city clearfix">
+            <ul class="clearfix">
+              [@cms_content_list count='13' orderBy='7' titLen='50' channelOption='1' channelId=c.id]
+          	  [#list tag_list as a]
+               <!-- 右侧列表前 3 个图文显示begin -->
+              [#if a_index < 3]            
+              <li class="imgList">
+                <a href="${a.url!'/'}" target="_blank">
+                  <img src="${a.titleImgUrl!}" width="70" height="49" class="fl">
+                  <div class="list_info fl ml10">
+                    <p class="tit mt5">[@text_cut s=a.stitle len=13 append='...'/]</p>
+                    <p class="intro mt5">[@text_cut s=a.description len=16 append='...'/]</p>
+                  </div>
+                </a> 
+              </li>
+              <!-- 右侧列表前 3 个图文显示end -->
+              [#else]
+              <!-- 右侧列表后 10 个文字显示begin -->
+              <li class="list"><span style="width: 16px;text-align: right;">${a_index-2}. </span><a href="${a.url!'/'}" target="_blank">[@text_cut s=a.stitle len=20 append='...'/]</a></li>
+               <!-- 右侧列表后 10 个文字显示end -->
+              [/#if]
+              [/#list]
+              [/@cms_content_list]
+            </ul>
+          </div>
+        </div>
+      </div>
+      [/#list]
+      [/@cms_channel_list]
+      <!-- 中间部分栏目列表end -->
+      <!-- 底部最新攻略图文展示begin -->
+      <h1 class="mt20 mb20">【澳大利亚旅游攻略】最新推荐</h1>
+      [@cms_content_list count='10' orderBy='2' titLen='50' channelOption='1' channelId=channel.id]
+      [#list tag_list as bean]
+      <div class="ck-panel ck-pd12">
+        <div class="ck-panel-content oh" style="padding: 0">
+          <a href="${bean.url!'/'}" target="_blank">
+            <dl class="ck-update">
+              <dt><img src="${bean.titleImgUrl!}" style="width: 276px;height: 145px;" /></dt>
+              <dd class="ck-update-title">${bean.title!}</dd>
+              <dd class="ck-update-desc">${bean.description!}</dd>
+            </dl>
+          </a>
+        </div>
+      </div>
+      [/#list]
+      [/@cms_content_list]
+      <!-- 底部最新攻略图文展示end -->
+    </div>
+  </div>
+</div>
+[#include "../footer/footer_list_aozhou.html"/]
+</body>
+</html>

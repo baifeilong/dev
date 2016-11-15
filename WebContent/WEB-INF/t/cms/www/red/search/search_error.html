@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>出境旅游攻略大全_出境自助游/自由行/自驾游【景点推荐 线路 游记 图片】-iTrip爱去自由</title>
+<meta name="keywords" content="出境旅游攻略,出境自助游攻略,自驾游攻略,出境自助游景点推荐,出境旅游线路,自由行游记"/>
+<meta name="description" content="iTrip爱去自由网(原澳乐网)出境旅游攻略大全提供最新出境自助游攻略、自由行攻略、自驾游攻略、出境自助游景点推荐、出境旅游线路、游记、图片、注意事项等"/>
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="expires" content="0" />
+<meta http-equiv="X-UA-Compatible" content="edge" />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=1200, initial-scale=0.8"/>
+<meta name="applicable-device" content="pc">
+<link rel="stylesheet" type="text/css" href="/${res}/css/it_reset.css">
+<link rel="stylesheet" type="text/css" href="/${res}/css/it_index_aus.css">
+<meta property="qc:admins" content="35532376716142106375" />
+<script src="${resSys}/front.js" type="text/javascript"></script>
+<script type="text/javascript" src="/${res}/js/jquery-1.9.1.min.js"></script>
+</head>
+<body>
+[#include "../include/top.html"/]
+<div class="wrap">
+  <div class="mt20 clearfix">
+    <div class="search_left fl">
+      <div class="search_title f14 bold blue">搜索结果</div>
+      <div class="list_city clearfix">
+        [#if q??]
+        [@cms_lucene_page q=q channelId=channelId descLen='100' append='...' count='10']
+        <div class="search_msg">您搜索的
+          <span class="red">“${input!}”</span>， 共有 <span class="red">${tag_list?size} 条</span> 查询结果，[@process_time/]
+        </div>
+        <div class="list_city clearfix">
+          <ul class="clearfix">
+            [#list tag_list as s]
+            <li>
+              <a href="${s.url}" target="_blank">
+                <img src="${s.titleImgUrl!}" width="108" height="86" class="fl">
+                <div class="list_info fl ml15 w570">
+                  <p class="tit mt10">[@text_cut s=s.title len=30 append='...'/]</p>
+                  <p class="intro mt5">[@text_cut s=s.description len=140 append='...'/]</p>
+                  <p class="time tc mt5 fl">
+		            <span>发布时间：${s.releaseDate!}&nbsp;&nbsp;</span>
+		            <span>来源：${s.origin!'iTrip网络整理'}&nbsp;&nbsp;</span>
+		            <span>浏览次数：${s.views!'0'}次</span>
+	  	          </p>
+                </div>
+              </a>
+            </li>
+            [/#list]
+          </ul>
+          <div class="pagenation tr hide pager" style="display: block;">[@cms_pagination sysPage='1'/]</div>
+        </div>
+        [/@cms_lucene_page]	  
+        [/#if]
+      </div>
+    </div>
+    <!-- 广告 -->
+    [#include "../advert/adver_search.html"/]
+  </div>
+</div>
+[#include "../footer/footer_common.html"/]
+</body>
+</html>

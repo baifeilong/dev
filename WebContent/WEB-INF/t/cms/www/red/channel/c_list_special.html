@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>${channel.title!'ITrip旅游攻略'}</title>
+<meta name="keywords" content="${channel.keywords!'ITrip旅游攻略'}"/>
+<meta name="description" content="${channel.description!'ITrip旅游攻略'}"/>
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="expires" content="0" />
+<meta http-equiv="X-UA-Compatible" content="edge" />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=1200, initial-scale=0.8"/>
+<meta name="applicable-device" content="pc">
+<meta property="qc:admins" content="35532376716142106375" />
+<link rel="stylesheet" type="text/css" href="/${res}/css/it_reset.css">
+<link rel="stylesheet" type="text/css" href="/${res}/css/special.css">
+</head>
+<body>
+[#include "../include/top.html"/]
+<div class="page">
+  <div class="page-warp">
+    <div class="warp-breadcrumb">当前位置：<a href="${base}/">首页</a> > [#list channel.nodeList as n]<a href="${n.url}">${n.name}</a>[#if n_has_next] > [/#if][/#list]</div>
+    <!-- 列表页顶部7条总浏览量最高的记录 -->
+    <div class="list-recommend clearfix">
+      [@cms_content_list count='7' orderBy='9' titLen='100' channelOption='1' channelId=channel.id]
+      [#list tag_list as a]
+      [#if a_index = 0]
+      <!-- 1个大图 -->
+      <a href="${a.url!'/'}" class="photo-list photo-list-bigger fl" target="_blank">
+        <img src="${a.titleImgUrl!}" alt="${a.stitle!}" style="width: 468px;height: 376px;">
+        <div class="photo-list-show ">
+          <div class="pls-bg"></div>
+          <p class="photo-list-title">[@text_cut s=a.stitle len=30 append='...'/]</p>
+        </div>
+      </a>
+      [#else]
+      <!-- 6个小图 -->
+      <a href="${a.url!'/'}" target="_blank" class="photo-list photo-list-224">
+        <div class="photo-list-view relative">
+          <img src="${a.titleImgUrl!}" alt="${a.stitle!}" style="width: 224px;height: 160px;" />
+          <div class="photo-list-show">
+            <div class="pls-bg"></div>
+            <p class="photo-list-title ellipsis">[@text_cut s=a.stitle len=15 append='...'/]</p>
+          </div>
+        </div>
+        <p class="photo-list-title ellipsis">[@text_cut s=a.stitle len=16 append='...'/]</p>
+      </a>
+      [/#if]
+      [/#list]
+      [/@cms_content_list]
+    </div>
+    [@cms_content_page count='9' orderBy='2' channelId=channel.id channelOption='1' dateFormat='yyyy-MM-dd']
+    <div class="list-content clearfix">
+      <!-- 每页显示6条内容，按照更新时间倒序排序begin -->
+      [#list tag_pagination.list as a]
+      <div class="topic-list">
+        <p class="topic-list-title ellipsis">[@text_cut s=a.stitle len=15 append='...'/]</p>
+        <div class="topic-list-info clearfix">
+          <a href="${a.url!'/'}" target="_blank">
+            <img class="fl info-photo" src="${a.titleImgUrl!}" />
+          </a>
+          <p class="info-desc">[@text_cut s=a.description len=70 append='...'/]</p>
+        </div>
+        <a href="${a.url!'/'}" target="_blank" class="btn-read fr">查看详情&nbsp;&gt;&gt;</a>
+      </div>
+      [/#list]
+      <!-- 每页显示6条内容end -->
+    </div>
+    <div class="list-pagination" style="display: block;">[@cms_pagination sysPage='1'/]</div>
+    [/@cms_content_page]
+  </div>
+  <div style="margin-top: -40px;">
+  </div>
+</div>
+  [#include "../footer/footer_list_special.html"/]
+</body>
+</html>

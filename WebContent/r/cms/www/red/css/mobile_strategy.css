@@ -1,0 +1,228 @@
+.layout-header{
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 10;
+	border-bottom: 1px solid #e7e7e7;
+	box-shadow: 0 0 1px #ccc;
+	background: #fff;
+}
+.search-box{
+	margin: 0 auto;
+	position: relative;
+	padding:0 2%;
+}
+.search-box input{
+	background:#eee;
+	height: 30px;
+	line-height: 30px;
+	border-radius: 30px;
+	padding-left: 30px;
+	border:0;
+	margin-top:6px;
+	width:100%;
+}
+.search-box .txt{
+	position: absolute;
+	left: 50%;
+	top: 1px;
+	-webkit-transform:translateX(-50%);
+	transform:translateX(-50%);
+	color: #939398;
+	font-size:14px;
+}
+.search-box .txt .iconfont{font-size: 14px;top:-1px;position:relative;}
+.blue-t{
+    border-bottom: 1px solid #e7e7e7;
+    padding:0.3rem 0;
+    overflow: hidden;
+    line-height: 0.28rem;
+}
+.blue-t a{
+	margin-right:4%;
+	font-size:0.26rem;
+	color:#222222;
+}
+.blue-t span{
+		border-left: 0.06rem solid #2197fb;
+    color: #282828;
+    padding-left: 0.2rem;
+    font-size:0.28rem;
+    font-weight: bold;
+}
+.main{
+	position: relative;
+	top: 42px;
+}
+.item{
+	padding:0 4% 0;
+	border-bottom: 1px solid #e7e7e7;
+	overflow: hidden;
+}
+.item a{
+	color: #222;
+	display: block;
+	padding: 0.2rem 0;
+	overflow: hidden;
+}
+.item p{
+	font-size:0.28rem;
+	line-height:0.4rem;
+}
+.item p.img-txt{
+	margin-left:2.1rem;
+}
+.img{
+	width: 1.95rem;
+	height: 1.3rem;
+}
+.fl-2 .views{
+	color:#bbb;
+	margin-top: 0.2rem;
+	margin-right: 0.2rem;
+	font-size:0.24rem;
+}
+.section{
+	background: #fff;
+	margin-top:10px;
+}
+.fl-3 .views{
+	margin-top:0.25rem;
+}
+footer{
+	height: 0.8rem;
+	line-height: 0.8rem;
+	text-align: center;
+	font-size:0.24rem;
+	color:#999;
+	background:#eee;
+}
+.choose {
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	border-top: 1px solid #e8e8e8;
+	background-color: rgba(57, 153, 246,0.9);
+	color: #c2cfcc;
+	position: fixed;
+	top: 41px;
+	left: 0;
+	z-index: 999;
+	display: -moz-box;
+	display: -webkit-box;
+	display: box;
+	display: -webkit-flex;
+	display: flex;
+	font-size: 0.3rem;
+}
+
+.choose .footer-tab {
+	height: 100%;
+	-moz-box-flex: 1;
+	-webkit-box-flex: 1;
+	box-flex: 1;
+	-webkit-flex: 1;
+	flex: 1;
+	text-align: center;
+	color: #666666;
+	font-weight: bolder;
+	position: relative;
+}
+
+.footer-tab a {
+	color: #fff
+}
+
+.rotate-45 {
+	top: 30px;
+	right: 5px;
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+
+.rotate {
+	top: 25px;
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+	border-top: 6px solid #999999;
+}
+
+.footer .blue {
+	color: #1295fe;
+}
+
+.footer .blue .rotate-45 {
+	border-top: 6px solid #faa744;
+}
+.padt82{
+	position: relative;
+	top:72px;
+}
+.choose .blue .rotate-45{border-top:6px solid #faa744}
+.filter-list{position: relative;top:21px;background:#fff;overflow:hidden;}
+.filter-list > ul{padding: 10px;}
+.filter-list h3{padding: 10px;font-size: 0.3rem}
+.filter-list ul>li{border-bottom: 1px solid #e7e7e7;padding: 8px 0px;}
+.filter-list .ul-items li{float: left;padding: 6px 8px;border: 1px solid #e7e7e7;margin-right:8px;border-radius: 20px;font-size: 0.2rem;margin-bottom: 6px; }
+.filter-list .ul-items li a{color:#666;}
+.filter-list .active{color: #fff;background:#1295fe }
+.filter-list .active a{color:#fff !important;}
+.filter-list .expand-more{text-align: center;padding: 8px;background: #efefef;border-radius: 5px;position: relative;}
+.details{
+	background-color:#0d93fb !important;
+	color:#fff !important;
+}
+.details .icon_back{
+	color:#fff !important;
+}
+.bag-white{
+	background:#fff;
+}
+.title{
+	font-size:0.34rem;
+	text-align: center;
+	font-weight: bold;
+	color:#333;
+	padding:20px 2% 10px;
+}
+.time{
+	border-bottom:1px solid #e7e7e7;
+	padding-bottom:10px;
+	text-align: center;
+	/* padding-left:2%; */
+	font-size:0.24rem;
+}
+.time i{
+	font-size:0.24rem;
+	margin:0px 5px;
+}
+.content1{
+	padding:10px 2%;
+	font-size:0.28rem;
+	line-height: 0.4rem;
+	color:#333;
+	text-indent: 0.2rem;
+	word-break: break-all;
+    word-wrap: break-word;
+}
+.content1 img{
+	margin:10px 0;
+}
+.content1 .ml10{
+	margin-right: 10px !important;
+	margin-top:5px !important;
+}
+.price{
+	margin-top: 0.15rem;
+	margin-left: 0.2rem;
+	color:#f7562a;
+	font-size: 0.25rem;
+}
+.details span{color:#fff !important;}
+.back_home{
+	position: absolute;
+	top: 0px;
+	right: 5px;
+	color: #fff;
+	font-size: 0.3rem;
+}

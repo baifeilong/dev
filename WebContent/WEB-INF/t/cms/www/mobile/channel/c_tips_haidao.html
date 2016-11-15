@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta name="format-detection" content="telphone=no, email=no" />
+<meta name="browsermode" content="application">
+<meta content="no-cache" http-equiv="pragma">
+<meta content="no-cache" http-equiv="cache-control">
+<meta content="0" http-equiv="expires">
+<meta name="applicable-device" content="mobile">	  
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<meta name="keywords" content="${channel.keywords!'ITrip旅游攻略'}"/>
+<meta name="description" content="${channel.description!'ITrip旅游攻略'}"/>
+<link rel="stylesheet" href="/${res}/css/mobile_common.css">
+<link rel="stylesheet" href="/${res}/css/mobile_strategy.css">
+<script src="/${res}/js/jquery-1.9.1.min.js"></script>
+<script src="/${res}/js/jquery.lazyload.min.js"></script>
+<title>${channel.title!'ITrip旅游攻略'}</title>
+</head>
+<body>
+  <!-- header -->
+  <header class="layout-header clearfix header">
+    <div class="layout-header-container details">
+      <i class="iconfont icon_back" id="backBtn">&#xe60b</i>
+      <h1 class="pos_r"><div class="topchange"><span>${channel.name!}</span></div></h1>
+      <i class="iconfont icon_search"><a href="${base}/search.jspx" class="white">&#xe606</a></i>
+    </div>
+  </header>
+  <!-- header end -->
+  <section class="main">
+    <div class="section">
+	  <h2 class="blue-t fz-14">
+		<span class="fl">热门旅游攻略</span>
+	  </h2>
+	  <ul>
+	    [@cms_content_list count='7' orderBy='8' titLen='50' channelOption='1' channelId=channel.id]
+        [#list tag_list as a]
+      	[#if a_index == 0]
+	    <li class="item">
+          <a href="${a.url!'/'}" >
+		    <div class="img fl">
+		      <img src="${a.titleImgUrl!}" alt="${a.title!}">
+		    </div>
+		    <p class="text-ellipsis fz-14 img-txt">${a.title!}</p>
+          </a>
+        </li>
+        [#else]
+        <li class="item">
+          <a href="${a.url!'/'}" >
+		    <p class="text-ellipsis-1 fz-14">${a.title!}</p>
+	      </a>
+        </li>
+        [/#if]
+        [/#list]
+        [/@cms_content_list]
+      </ul>
+    </div>
+    <!-- 中间部分栏目列表begin -->
+    [@cms_channel_list parentId=channel.id]
+    [#list tag_list as c]
+    <div class="section fl-2">
+	  <h2 class="blue-t fz-14">
+	    <a href="${c.url!'/'}">
+	      <span class="fl">${c.name!'攻略'}</span>
+	      <label class="fr" >查看更多&gt;</label>
+	    </a>
+	  </h2>
+	  <ul>
+	    [@cms_content_list count='5' orderBy='7' titLen='50' channelOption='1' channelId=c.id]
+        [#list tag_list as a]
+		<li class="item">
+		  <a href="${a.url!'/'}" >
+			<p class="text-ellipsis fz-14">${a.title!}</p>
+		  </a>
+		</li>
+		[/#list]
+        [/@cms_content_list]
+	  </ul>
+    </div>
+    [/#list]
+    [/@cms_channel_list]
+    <!-- 底部最新攻略图文展示begin -->
+    <div class="section fl-2 fl-3">
+      <h2 class="blue-t fz-14">
+		<span class="fl">最新推荐</span>
+	  </h2>
+      <ul>
+	    [@cms_content_list count='5' orderBy='2' titLen='50' channelOption='1' channelId=channel.id]
+        [#list tag_list as a]
+	    <li class="item">
+		  <a href="${a.url!'/'}" >
+		    <div class="img fl">
+		      <img data-original="${a.titleImgUrl!}" class="lazy" alt="${a.title!}">
+			</div>
+		    <p class="text-ellipsis fz-14 img-txt">${a.title!}</p>
+		  </a>
+	    </li>
+	    [/#list]
+        [/@cms_content_list]
+      </ul>
+    </div>		
+	<footer>亲，已经到底部了</footer>
+  </section>
+  <div class="gotop index-gotop">
+	<img src="http://m.itrip.com/image/gotop.png" alt="gotop">
+  </div>
+  <script src="/${res}/js/mobile_base.js"></script>
+  <script src="/${res}/js/mobile_custom.js"></script>
+  <script type="text/javascript">
+	$(function(){
+	  index.init();
+	  gotop();
+	})
+  </script>
+  <!-- 统计代码 -->
+  [#include "../footer/footer_common.html"/]
+</body>
+</html>

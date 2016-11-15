@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta name="format-detection" content="telphone=no, email=no" />
+<meta name="browsermode" content="application">
+<meta content="no-cache" http-equiv="pragma">
+<meta content="no-cache" http-equiv="cache-control">
+<meta content="0" http-equiv="expires">
+<meta name="applicable-device" content="mobile">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">	  
+<meta name="keywords" content="澳大利亚旅游攻略,欧洲旅游攻略,新西兰旅游攻略,出境自由行攻略"/>
+<meta name="description" content="iTrip爱去自由(原澳乐网)旅游攻略大全栏目提供2016最新澳洲/澳大利亚旅游攻略、欧洲旅游攻略、东南亚旅游攻略、新西兰旅游攻略等多地境外自由行/自助游攻略,国外热门景点推荐、线路、游记、注意事项等。"/>
+<link rel="stylesheet" href="/${res}/css/mobile_common.css">
+<link rel="stylesheet" href="/${res}/css/mobile_strategy.css">
+<script src="/${res}/js/jquery-1.9.1.min.js"></script>
+<script src="/${res}/js/jquery.lazyload.min.js"></script>
+<title>澳大利亚旅游攻略_欧洲旅游攻略_新西兰旅游攻略_出境自由行攻略2016-iTrip爱去自由</title>
+</head>
+<body>
+  <!-- 顶部搜索框 -->
+  [#include "../include/top.html"/]
+  <section class="main">
+    <div class="section">
+      <h1 class="blue-t fz-14">
+        <span class="fl">境外旅游攻略</span>
+      </h1>
+      <ul>
+        [@cms_content_list count='8' orderBy='8' titLen='50' channelOption='1']
+        [#list tag_list as a]
+        [#if a_index < 2]
+	    <li class="item">
+		  <a href="${a.url!'/'}" >
+		    <div class="img fl"><img src="${a.titleImgUrl!}" alt="${a.title!}"></div>
+			<p class="text-ellipsis fz-14 img-txt">${a.title!}</p>
+		  </a>
+	    </li>
+	    [#else]
+	    <li class="item">
+		  <a href="${a.url!'/'}" >
+		    <p class="text-ellipsis-1 fz-14">${a.title!}</p>
+		  </a>
+	    </li>
+	    [/#if]
+        [/#list]
+        [/@cms_content_list]
+      </ul>
+    </div>
+    <!-- 中间部分栏目列表begin -->
+    [@cms_channel_list]
+    [#list tag_list as c]
+    <div class="section fl-2">
+      <h2 class="blue-t fz-14">
+        <a href="${c.url!}">
+	      <span class="fl">${c.name!'攻略'}</span>
+	      <label class="fr" >查看更多&gt;</label>
+	    </a>
+      </h2>
+      <ul>
+        [@cms_content_list count='5' orderBy='7' titLen='50' channelOption='1' channelId=c.id]
+        [#list tag_list as a]
+        <li class="item">
+          <a href="${a.url!'/'}" >
+            <p class="text-ellipsis fz-14">${a.title!}</p>
+	      </a>
+        </li>
+        [/#list]
+        [/@cms_content_list]
+      </ul>
+    </div>
+    [/#list]
+    [/@cms_channel_list]
+    <!-- 中间部分栏目列表end -->
+    <!-- 底部最新攻略图文展示begin -->
+    <div class="section fl-2 fl-3">
+	  <h2 class="blue-t fz-14">
+	    <span class="fl">最新推荐</span>
+	  </h2>
+	  <ul>
+	    [@cms_content_list count='5' orderBy='2' titLen='50' channelOption='1']
+        [#list tag_list as a]
+	    <li class="item">
+		  <a href="${a.url!'/'}" >
+		    <div class="img fl">
+		      <img data-original="${a.titleImgUrl!}" class="lazy" alt="${a.title!}">
+			</div>
+		    <p class="text-ellipsis fz-14 img-txt">${a.title!}</p>
+		  </a>
+	    </li>
+	    [/#list]
+        [/@cms_content_list]
+	  </ul>
+    </div>
+    <!-- 底部最新攻略图文展示end -->
+    <footer>亲，已经到底部了</footer>
+  </section>
+  <div class="gotop index-gotop">
+	<img src="http://m.itrip.com/image/gotop.png" alt="gotop">
+  </div>
+  <script src="/${res}/js/mobile_base.js"></script>
+  <script src="/${res}/js/mobile_custom.js"></script>
+  <script type="text/javascript">
+	$(function(){
+	  index.init();
+	  gotop();
+	})
+  </script>
+  <!-- 统计代码 -->
+  [#include "../footer/footer_common.html"/]
+</body>
+</html>

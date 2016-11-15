@@ -1,0 +1,9 @@
+[#assign p=tag_pagination/]
+<div class="list-more">
+  [#if !p.lastPage]
+  <a href="${hrefFormer}_${p.nextPage}${hrefLatter}" class="see-more">加载更多</a>
+  [/#if]
+  [#if !p.firstPage && p.lastPage]
+  <a disabled="disabled" class="see-more">亲，没有了</a>
+  [/#if]
+</div>

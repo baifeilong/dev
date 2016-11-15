@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta name="format-detection" content="telphone=no, email=no" />
+<meta name="browsermode" content="application">
+<meta content="no-cache" http-equiv="pragma">
+<meta content="no-cache" http-equiv="cache-control">
+<meta content="0" http-equiv="expires">
+<meta name="applicable-device" content="mobile">	  
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<meta name="keywords" content="出境旅游攻略,出境自助游攻略,自驾游攻略,出境自助游景点推荐,出境旅游线路,自由行游记"/>
+<meta name="description" content="iTrip爱去自由网(原澳乐网)出境旅游攻略大全提供最新出境自助游攻略、自由行攻略、自驾游攻略、出境自助游景点推荐、出境旅游线路、游记、图片、注意事项等"/>
+<link rel="stylesheet" href="/${res}/css/mobile_common.css">
+<link rel="stylesheet" href="/${res}/css/mobile_strategy.css">
+<script src="${resSys}/front.js"></script>
+<script src="/${res}/js/jquery-1.9.1.min.js"></script>
+<script src="/${res}/js/jquery.lazyload.min.js"></script>
+<title>出境旅游攻略大全_出境自助游/自由行/自驾游【景点推荐 线路 游记 图片】-iTrip爱去自由</title>
+</head>
+<body>
+  [#include "../include/top.html"/]
+  <div class="main">
+    <div class="section fl-2">
+      [#if q??]
+      [@cms_lucene_page q=q channelId=c descLen='100' append='...' count='10']
+      <ul>
+        [#list tag_list as a]
+        <script>Cms.viewCount("${base}","${a.id}","view${a.id!}");</script>
+        <li class="item">
+          <a href="${a.url}">
+            <p class="text-ellipsis fz-14">${a.title!}</p>
+            <span class="fr views"><i class="iconfont">&#xe624;</i><i id="view${a.id!}"></i></span>
+          </a>
+        </li>
+        [/#list]
+      </ul>
+      [@cms_pagination sysPage='2'/]
+      [/@cms_lucene_page]	  
+      [/#if]
+    </div>
+  </div>
+  <div class="gotop index-gotop">
+  <img src="http://m.itrip.com/image/gotop.png" alt="gotop">
+</div>
+<script src="/${res}/js/mobile_base.js"></script>
+<script src="/${res}/js/mobile_custom.js"></script>
+<script type="text/javascript">
+	$(function(){
+		index.init();
+		gotop();
+	})
+</script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta name="format-detection" content="telphone=no, email=no" />
+<meta name="browsermode" content="application">
+<meta content="no-cache" http-equiv="pragma">
+<meta content="no-cache" http-equiv="cache-control">
+<meta content="0" http-equiv="expires">
+<meta name="applicable-device" content="mobile">	  
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<meta name="keywords" content="${channel.keywords!'ITrip旅游攻略'}"/>
+<meta name="description" content="${channel.description!'ITrip旅游攻略'}"/>
+<link rel="stylesheet" href="/${res}/css/mobile_common.css">
+<link rel="stylesheet" href="/${res}/css/mobile_strategy.css">
+<script src="/${res}/js/jquery-1.9.1.min.js"></script>
+<script src="/${res}/js/jquery.lazyload.min.js"></script>
+<title>${channel.title!'ITrip旅游攻略'}</title>
+</head>
+<body>
+  <div class="content">
+	<header class="layout-header clearfix header">
+	  <div class="layout-header-container details">
+	    <i class="iconfont icon_back" id="backBtn">&#xe60b</i>
+	    <h1 class="pos_r"><div class="topchange"><span>${channel.name!}</span></div></h1>
+	    <i class="iconfont icon_search" style="right:0.5rem;"><a href="${base}/search.jspx" class="white">&#xe606</a></i>
+	    [#if channel.child?size > 0]    
+		<i class="iconfont icon_menu" id="slidebar">&#xe626</i>
+		[#else]
+		<a href="${site.url!}" class="iconfont back_home">&#xe62c;</a>
+		[/#if]
+	  </div>
+	</header>
+    <div class="main">
+	  <div class="section fl-2">
+        [@cms_content_page count='10' orderBy='4' channelId=channel.id channelOption='1' dateFormat='yyyy-MM-dd']
+        <ul>
+          [#list tag_pagination.list as a]
+          <li class="item">
+		    <a href="${a.url!'/'}">
+			  <p class="text-ellipsis fz-14">${a.title!}</p>
+			  <span class="fr views"><i class="iconfont">&#xe625;</i>${a.releaseDate?date}</span>
+		    </a>
+		  </li>
+		  [/#list]
+	    </ul>
+	    [@cms_pagination sysPage='2'/]
+	    [/@cms_content_page]
+      </div>
+    </div>
+  </div>
+  <div class="gotop index-gotop">
+    <img src="http://m.itrip.com/image/gotop.png" alt="gotop">
+  </div>
+  <div class="menu-dialog">
+    <ul>
+      [@cms_channel_list parentId=channel.id]
+      [#list tag_list as c]
+      <li><a href="${c.url!'/'}">${c.name!}</a><i class="iconfont">&#xe61d;</i></li>
+      [/#list]
+      [/@cms_channel_list]
+    </ul>
+  </div>
+<script src="/${res}/js/mobile_base.js"></script>
+<script src="/${res}/js/mobile_custom.js"></script>
+<script type="text/javascript">
+	$(function(){
+		list.init();
+		gotop();
+		var isTurn = true;
+		$("#slidebar").click(function(){
+			if(isTurn){
+				$('.menu-dialog').animate({'right':'0%'})
+				isTurn = false;
+			}
+			else{
+				$('.menu-dialog').animate({'right':'-45%'})
+				isTurn = true;
+			}
+		});
+	})
+</script>
+<!-- 统计代码 -->
+[#include "../footer/footer_common.html"/]
+</body>
+</html>

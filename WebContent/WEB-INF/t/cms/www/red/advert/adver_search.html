@@ -1,0 +1,37 @@
+<div class="right fr">
+  <div class="ad">
+    <div class="ad_title tc f16 blue">iTrip旅游攻略</div>
+    <div class="ad_list">
+      <ul>
+        <!-- 内容页广告栏位 -->
+        [@cms_advertising id=8]
+        [#list tag_list as ad]
+        [#if ad??]
+        <li>
+          [#if ad.category=="image"]<!-- 广告类型-图片 -->
+          <a href="${(ad.attr.image_link)!}" target="${ad.attr.image_target!}" title="${ad.name!}" onclick="$.get('${base}/ad_click.jspx?id=${ad.id}');">
+            <img src="${ad.attr.image_url!}" width="230p" height="170">
+          </a>
+          <div class="txt_back"></div>
+          <div class="txt_info">[@text_cut s=ad.name len=18 append='...'/]</div>
+          [#elseif ad.category=="flash"]<!-- 广告类型-视频 -->
+           <embed type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" play="true" loop="true" menu="true"
+             src="${(ad.attr.flash_url)!}" width="230" height="170" />
+          <div class="txt_back"></div>
+          <div class="txt_info">[@text_cut s=ad.name len=18 append='...'/]</div>
+          [#elseif ad.category=="text"]<!-- 广告类型-文本 -->
+          <a href="${(ad.attr.text_link)!}" target="${(ad.attr.text_target)!}" onclick="$.get('${base}/ad_click.jspx?id=${ad.id}');">
+	        <span style="[#if (ad.attr.text_color)??]color:${ad.attr.text_color};[/#if][#if (ad.attr.text_font)??]font-size:${ad.attr.text_font};[/#if]">${ad.name!}</span>
+          </a>
+          [#elseif ad.category=="code"]${ad.code!}
+          [#else]
+          <span></span>
+          [/#if]
+        </li>
+        [/#if]
+        [/#list]
+        [/@cms_advertising]
+      </ul>
+    </div>
+  </div>
+</div>
