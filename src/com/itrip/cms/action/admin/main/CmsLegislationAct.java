@@ -47,7 +47,7 @@ public class CmsLegislationAct {
         if (errors.hasErrors()) {
             return errors.showErrorPage(model);
         }
-        model.addAttribute("CmsLegislation", manager.findById(id));
+        model.addAttribute("cmsLegislation", manager.findById(id));
         return "legislation/edit";
     }
 
@@ -55,7 +55,7 @@ public class CmsLegislationAct {
     public String save(CmsLegislation bean, HttpServletRequest request) throws IOException {
         bean = manager.save(bean);
         log.info("save CmsLegislation id={}", bean.getId());
-        cmsLogMng.operating(request, "CmsLegislation.log.save", "id=" + bean.getId() + ";name=" + bean.getName());
+        cmsLogMng.operating(request, "cmsLegislation.log.save", "id=" + bean.getId() + ";name=" + bean.getName());
         return "redirect:v_list.do";
     }
 
@@ -67,7 +67,7 @@ public class CmsLegislationAct {
         }
         bean = manager.update(bean);
         log.info("update CmsLegislation id={}.", bean.getId());
-        cmsLogMng.operating(request, "CmsLegislation.log.update", "id=" + bean.getId() + ";name=" + bean.getName());
+        cmsLogMng.operating(request, "cmsLegislation.log.update", "id=" + bean.getId() + ";name=" + bean.getName());
         return list(pageNo, request, model);
     }
 
@@ -80,7 +80,7 @@ public class CmsLegislationAct {
         CmsLegislation[] beans = manager.deleteByIds(ids);
         for (CmsLegislation bean : beans) {
             log.info("delete CmsLegislation id={}", bean.getId());
-            cmsLogMng.operating(request, "CmsLegislation.log.delete", "id=" + bean.getId() + ";name=" + bean.getName());
+            cmsLogMng.operating(request, "cmsLegislation.log.delete", "id=" + bean.getId() + ";name=" + bean.getName());
         }
         return list(pageNo, request, model);
     }
