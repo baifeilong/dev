@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.itrip.cms.entity.main">
+    <class name="CmsLegislation" table="legislation">
+        <meta attribute="sync-DAO">false</meta>
+        <cache usage="read-write"/>
+        <id name="id" type="java.lang.Integer" column="id">
+            <generator class="identity"/>
+        </id>
+        <property name="name" column="name" type="string" not-null="true" length="50"/>
+        <property name="phone" column="phone" type="string" not-null="false" length="20"/>
+        <property name="address" column="address" type="string" not-null="false" length="100"/>
+        <property name="name1" column="name1" type="string" not-null="false" length="100"/>
+        <property name="phone1" column="phone1" type="string" not-null="false" length="20"/>
+        <property name="address1" column="address1" type="string" not-null="false" length="10"/>
+        <property name="track" column="track" type="string" not-null="false" length="10"/>
+        <property name="remark" column="remark" type="string" not-null="false" length="50"/>
+        <property name="createTime" column="create_time" type="timestamp" not-null="false"/>
+    </class>
+</hibernate-mapping>

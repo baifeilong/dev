@@ -156,6 +156,7 @@
 	<bean id="cmsRoleMng" class="com.itrip.cms.manager.main.impl.CmsRoleMngImpl"/>
 	<bean id="cmsLogMng" class="com.itrip.cms.manager.main.impl.CmsLogMngImpl"/>
 	<bean id="databaseMng" class="com.itrip.cms.manager.main.impl.DatabaseMngImpl"/>
+	<bean id="cmsLegislationMng" class="com.itrip.cms.manager.main.impl.CmsLegislationMngImpl"/>
 	
 	<bean id="cmsAcquisitionMng" class="com.itrip.cms.manager.assist.impl.CmsAcquisitionMngImpl"/>
 	<bean id="cmsAcquisitionHistoryMng" class="com.itrip.cms.manager.assist.impl.CmsAcquisitionHistoryMngImpl"/>
@@ -193,7 +194,7 @@
 	<bean id="cmsJobApplyMng" class="com.itrip.cms.manager.assist.impl.CmsJobApplyMngImpl"/>
 	<bean id="cmsUserResumeMng" class="com.itrip.cms.manager.main.impl.CmsUserResumeMngImpl"/>
 	<bean id="cmsTaskMng" class="com.itrip.cms.manager.assist.impl.CmsTaskMngImpl"/>
-	
+
 	<!--DAO-->
 	<bean id="channelDao" class="com.itrip.cms.dao.main.impl.ChannelDaoImpl"/>
 	<bean id="channelExtDao" class="com.itrip.cms.dao.main.impl.ChannelExtDaoImpl"/>
@@ -216,6 +217,7 @@
 	<bean id="cmsGroupDao" class="com.itrip.cms.dao.main.impl.CmsGroupDaoImpl"/>
 	<bean id="cmsRoleDao" class="com.itrip.cms.dao.main.impl.CmsRoleDaoImpl"/>
 	<bean id="cmsLogDao" class="com.itrip.cms.dao.main.impl.CmsLogDaoImpl"/>
+	<bean id="cmsLegislationDao" class="com.itrip.cms.dao.main.impl.CmsLegislationDaoImpl"/>
 	<bean id="databaseDao" class="com.itrip.cms.dao.main.impl.DatabaseDaoImpl">
 	  	<property name="dataSource" ref="dataSource"></property>
 	</bean>
