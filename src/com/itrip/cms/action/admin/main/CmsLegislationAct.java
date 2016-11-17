@@ -4,6 +4,11 @@ import com.itrip.cms.entity.main.CmsLegislation;
 import com.itrip.cms.manager.main.CmsLegislationMng;
 import com.itrip.cms.manager.main.CmsLogMng;
 import com.itrip.cms.web.WebErrors;
+import com.itrip.common.util.DateFormatUtils;
+import com.itrip.common.util.DateUtils;
+import com.itrip.common.util.ExportWordUtils;
+import com.itrip.common.web.springmvc.RealPathResolver;
+import org.omg.CORBA.DATA_CONVERSION;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,54 +17,75 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
+@RequestMapping("/legislation")
 public class CmsLegislationAct {
 
     private static final Logger log = LoggerFactory.getLogger(CmsLegislationAct.class);
 
     private final CmsLogMng cmsLogMng;
     private final CmsLegislationMng manager;
+    private final RealPathResolver realPathResolver;
 
     @Autowired
-    public CmsLegislationAct(CmsLogMng cmsLogMng, CmsLegislationMng manager) {
+    public CmsLegislationAct(CmsLogMng cmsLogMng, CmsLegislationMng manager, RealPathResolver realPathResolver) {
         this.cmsLogMng = cmsLogMng;
         this.manager = manager;
+        this.realPathResolver = realPathResolver;
     }
 
-    @RequestMapping("/legislation/v_list.do")
+    @RequestMapping("/exportWord.do")
+    public String exportWord(Integer id, HttpServletRequest request, HttpServletResponse response, ModelMap model) {
+        WebErrors errors = validateEdit(id, request);
+        if (errors.hasErrors()) {
+            return errors.showErrorPage(model);
+        }
+        CmsLegislation legislation = manager.findById(id);
+        legislation.setWordTime(DateUtils.getNowCHSDate());
+        Map<String, CmsLegislation> dataMap = new HashMap<String, CmsLegislation>();
+        dataMap.put("bean", legislation);
+        String tplPath = realPathResolver.get("/WEB-INF/word_tpls");
+        ExportWordUtils.createDoc("被执行人财产状况表", "legislation.xml", tplPath, dataMap, response);
+        return null;
+    }
+
+    @RequestMapping("/v_list.do")
     public String list(Integer pageNo, HttpServletRequest request, ModelMap model) {
         List<CmsLegislation> list = manager.getList();
         model.addAttribute("list", list);
         return "legislation/list";
     }
 
-    @RequestMapping("/legislation/v_add.do")
+    @RequestMapping("/v_add.do")
     public String add(ModelMap model) {
         return "legislation/add";
     }
 
-    @RequestMapping("/legislation/v_edit.do")
+    @RequestMapping("/v_edit.do")
     public String edit(Integer id, HttpServletRequest request, ModelMap model) {
         WebErrors errors = validateEdit(id, request);
         if (errors.hasErrors()) {
             return errors.showErrorPage(model);
         }
-        model.addAttribute("CmsLegislation", manager.findById(id));
+        model.addAttribute("cmsLegislation", manager.findById(id));
         return "legislation/edit";
     }
 
-    @RequestMapping("/legislation/o_save.do")
+    @RequestMapping("/o_save.do")
     public String save(CmsLegislation bean, HttpServletRequest request) throws IOException {
         bean = manager.save(bean);
         log.info("save CmsLegislation id={}", bean.getId());
-        cmsLogMng.operating(request, "CmsLegislation.log.save", "id=" + bean.getId() + ";name=" + bean.getName());
+        cmsLogMng.operating(request, "cmsLegislation.log.save", "id=" + bean.getId() + ";name=" + bean.getName());
         return "redirect:v_list.do";
     }
 
-    @RequestMapping("/legislation/o_update.do")
+    @RequestMapping("/o_update.do")
     public String update(CmsLegislation bean, Integer pageNo, HttpServletRequest request, ModelMap model) {
         WebErrors errors = validateUpdate(bean.getId(), request);
         if (errors.hasErrors()) {
@@ -67,11 +93,11 @@ public class CmsLegislationAct {
         }
         bean = manager.update(bean);
         log.info("update CmsLegislation id={}.", bean.getId());
-        cmsLogMng.operating(request, "CmsLegislation.log.update", "id=" + bean.getId() + ";name=" + bean.getName());
+        cmsLogMng.operating(request, "cmsLegislation.log.update", "id=" + bean.getId() + ";name=" + bean.getName());
         return list(pageNo, request, model);
     }
 
-    @RequestMapping("/legislation/o_delete.do")
+    @RequestMapping("/o_delete.do")
     public String delete(Integer[] ids, Integer pageNo, HttpServletRequest request, ModelMap model) {
         WebErrors errors = validateDelete(ids, request);
         if (errors.hasErrors()) {
@@ -80,7 +106,7 @@ public class CmsLegislationAct {
         CmsLegislation[] beans = manager.deleteByIds(ids);
         for (CmsLegislation bean : beans) {
             log.info("delete CmsLegislation id={}", bean.getId());
-            cmsLogMng.operating(request, "CmsLegislation.log.delete", "id=" + bean.getId() + ";name=" + bean.getName());
+            cmsLogMng.operating(request, "cmsLegislation.log.delete", "id=" + bean.getId() + ";name=" + bean.getName());
         }
         return list(pageNo, request, model);
     }

@@ -37,18 +37,19 @@ function optDelete() {
 		<input type='checkbox' name='ids' value='${bean.id}'/><#t/>
 	</@p.column><#t/>
 	<@p.column title="ID">${bean.id}</@p.column><#t/>
-	<@p.column code="申请人姓名/名称">${bean.name}</@p.column><#t/>
-	<@p.column code="电话">${bean.phone}</@p.column><#t/>
-	<@p.column code="地址">${bean.address}</@p.column><#t/>
-	<@p.column code="申请人1姓名/名称">${bean.name}</@p.column><#t/>
-	<@p.column code="电话">${bean.phone}</@p.column><#t/>
-	<@p.column code="地址">${bean.address}</@p.column><#t/>
-    <@p.column code="财产线索">${bean.track}</@p.column><#t/>
-    <@p.column code="备注">${bean.remark}</@p.column><#t/>
-    <@p.column code="日期">${bean.createTime}</@p.column><#t/>
+	<@p.column code="申请人姓名/名称">${bean.name!}</@p.column><#t/>
+	<@p.column code="电话">${bean.phone!}</@p.column><#t/>
+	<@p.column code="地址">${bean.address!}</@p.column><#t/>
+	<@p.column code="申请人姓名/名称1">${bean.name!}</@p.column><#t/>
+	<@p.column code="电话1">${bean.phone!}</@p.column><#t/>
+	<@p.column code="地址1">${bean.address!}</@p.column><#t/>
+    <@p.column code="财产线索">${bean.track!}</@p.column><#t/>
+    <@p.column code="备注">${bean.remark!}</@p.column><#t/>
+    <@p.column code="日期">${bean.createTime!}</@p.column><#t/>
 	<@p.column code="global.operate" align="center">
 		<a href="v_edit.do?id=${bean.id}" class="pn-opt"><@s.m "global.edit"/></a> | <#rt/>
-		<a href="o_delete.do?ids=${bean.id}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}" class="pn-opt"><@s.m "global.delete"/></a><#t/>
+		<a href="o_delete.do?ids=${bean.id}" onclick="if(!confirm('<@s.m "global.confirm.delete"/>')) {return false;}" class="pn-opt"><@s.m "global.delete"/></a> | <#t/>
+		<a href="exportWord.do?id=${bean.id}" class="pn-opt">生成word</a><#rt/>
 	</@p.column><#t/>
 </@p.table>
 <div style="margin-top:15px;"><input class="del-button" type="button" value="<@s.m "global.delete"/>" onclick="optDelete();"/></div>

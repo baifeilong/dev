@@ -4,12 +4,15 @@ import com.itrip.cms.dao.main.CmsLegislationDao;
 import com.itrip.cms.entity.main.CmsLegislation;
 import com.itrip.cms.manager.main.CmsLegislationMng;
 import com.itrip.common.hibernate3.Updater;
+import com.itrip.common.util.DateFormatUtils;
+import com.itrip.common.util.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -31,16 +34,12 @@ public class CmsLegislationMngImpl implements CmsLegislationMng {
     }
 
     @Transactional(readOnly = true)
-    public List<CmsLegislation> getListFromCache() {
-        return dao.getList(true);
-    }
-
-    @Transactional(readOnly = true)
     public CmsLegislation findById(Integer id) {
         return dao.findById(id);
     }
 
     public CmsLegislation save(CmsLegislation bean){
+        bean.setCreateTime(new Date());
         dao.save(bean);
         return bean;
     }

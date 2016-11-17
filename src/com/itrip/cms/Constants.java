@@ -77,4 +77,5 @@ public class Constants {
 	public static String ONESQL_PREFIX = "JEECMS_BACKUP_";
 	/** 防火墙配置文件 */
 	public static String FIREWALL_CONFIGPATH = "/WEB-INF/config/firewall.properties";
+
 }

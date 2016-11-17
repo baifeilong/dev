@@ -25,6 +25,7 @@ public abstract class BaseCmsLegislation implements Serializable {
     private String track;
     private String remark;
     private Date createTime;
+    private String wordTime;
 
     public Integer getId() {
         return id;
@@ -104,5 +105,13 @@ public abstract class BaseCmsLegislation implements Serializable {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public String getWordTime() {
+        return wordTime;
+    }
+
+    public void setWordTime(String wordTime) {
+        this.wordTime = wordTime;
     }
 }
