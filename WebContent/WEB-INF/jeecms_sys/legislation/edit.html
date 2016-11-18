@@ -1,36 +1,35 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title></title>
-    <#include "/jeecms_sys/head.html"/>
-    <script type="text/javascript">
-        $(function () {
-            $("#jvForm").validate();
-        });
-    </script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title></title>
+<#include "/jeecms_sys/head.html"/>
+<script type="text/javascript">
+$(function() {
+	$("#jvForm").validate();
+});
+</script>
 </head>
 <body>
 <div class="box-positon">
-    <div class="rpos"><@s.m "global.position"/>: <@s.m "global.edit"/></div>
-    <form class="ropt">
-        <input type="button" value="<@s.m "global.backToList"/>" onclick="history.back();" class="return-button"/>
-    </form>
-    <div class="clear"></div>
+	<div class="rpos"><@s.m "global.position"/>:  <@s.m "cmsLegislation.function"/> - <@s.m "global.edit"/></div>
+	<label class="ropt"><input type="button" value="<@s.m 'global.backToList'/>" onclick="history.back();" class="return-button"/></label>
+	<div class="clear"></div>
 </div>
 <div class="body-box">
-    <@p.form id="jvForm" action="o_update.do" labelWidth="12">
-    <@p.text colspan="1" width="50" label="申请人姓名" name="name" value=cmsLegislation.name required="true" class="required" maxlength="100"/>
-    <@p.text colspan="1" width="50" label="电话" name="phone" value=cmsLegislation.phone required="true" class="required" maxlength="50"/><@p.tr/>
-    <@p.text colspan="2" width="50" label="地址" name="address" value=cmsLegislation.address style="width:500px" required="true" maxlength="200"/><@p.tr/>
-    <@p.text colspan="1" width="50" label="申请人姓名1" name="name1" value=cmsLegislation.name1 required="true" class="required" maxlength="100"/>
-    <@p.text colspan="1" width="50" label="电话1" name="phone1" value=cmsLegislation.phone1 required="true" class="required" maxlength="50"/><@p.tr/>
-    <@p.text colspan="2" width="50" label="地址1" name="address1" value=cmsLegislation.address1 style="width:500px" required="true" maxlength="200"/><@p.tr/>
-    <@p.text colspan="2" width="50" label="财产线索" name="track" value=cmsLegislation.track style="width:500px" required="true" class="required" maxlength="500" help="帮助信息"/><@p.tr/>
-    <@p.text colspan="2" width="50" label="备注" name="remark" value=cmsLegislation.remark style="width:500px" required="true" class="required" maxlength="200" help="帮助信息"/><@p.tr/>
-    <@p.td colspan="2">
-    <@p.hidden name="id" value=cmsLegislation.id/><@p.submit code="global.submit"/> &nbsp; <@p.reset code="global.reset"/>
-</@p.td>
+<@p.form id="jvForm" action="o_update.do" labelWidth="12">
+	<@p.text colspan="1" width="50" label="申请人姓名" name="name" value=cmsLegislation.name required="true" class="required" maxlength="100"/>
+	<@p.text colspan="1" width="50" label="电话" name="phone" value=cmsLegislation.phone required="true" class="required" maxlength="50"/><@p.tr/>
+	<@p.text colspan="2" width="50" label="地址" name="address" value=cmsLegislation.address required="true" class="required" maxlength="200" style="width: 500px"/><@p.tr/>
+	<@p.text colspan="1" width="50" label="申请人姓名1" name="name1" value=cmsLegislation.name1 required="true" class="required" maxlength="100"/>
+	<@p.text colspan="1" width="50" label="电话1" name="phone1" value=cmsLegislation.phone1 required="true" class="required" maxlength="50"/><@p.tr/>
+	<@p.text colspan="2" width="50" label="地址1" name="address1" value=cmsLegislation.address1 required="true" class="required" maxlength="200" style="width: 500px"/><@p.tr/>
+	<@p.textarea colspan="2" rows="3" cols="100" label="财产线索" name=track value=cmsLegislation.track required="true" class="required" help="提供可执行财产的线索，以及需要法院核实的情况" helpPosition="2"/><@p.tr/>
+	<@p.textarea colspan="2" rows="3" cols="100" label="备注" name=remark value=cmsLegislation.remark required="true" class="required" help="" helpPosition="2"/><@p.tr/>
+	<@p.td colspan="2">
+		<@p.hidden name="id" value=cmsLegislation.id/>
+    	<@p.submit code="global.submit"/> &nbsp; <@p.reset code="global.reset"/>
+	</@p.td>
 </@p.form>
 </div>
 </body>

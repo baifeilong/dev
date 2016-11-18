@@ -7,10 +7,8 @@ import java.io.IOException;
 import java.util.List;
 
 public interface CmsLegislationMng {
-    
-    public List<CmsLegislation> getList();
 
-    public List<CmsLegislation> getListFromCache();
+    public List<CmsLegislation> getList();
 
     public CmsLegislation findById(Integer id);
 
@@ -21,4 +19,5 @@ public interface CmsLegislationMng {
     public CmsLegislation deleteById(Integer id);
 
     public CmsLegislation[] deleteByIds(Integer[] ids);
+
 }
