@@ -1,2 +1,2 @@
-@echo ÕıÔÚ²¿Êğ
+@echo deploy project
 ant -f deploy.xml

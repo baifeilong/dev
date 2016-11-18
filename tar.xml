@@ -1,60 +1,60 @@
 <project>
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.itrip.guide.war</groupId>
-	<artifactId>com-itrip-guide-war</artifactId>
-	<packaging>pom</packaging>
-	<name>com-itrip-guide-war</name>
-	<version>1.0</version>
-	<description>itrip guide</description>
-	<url>http://www.itrip.com/</url>
-	<properties>
-		<warbase>target/guide</warbase>
-		<jsp.api.version>2.2</jsp.api.version>
-		<servlet.api.version>2.5</servlet.api.version>
-	</properties>
-	<build>
-		<plugins>
-			<!-- 生成WAR包 -->
-			<plugin>
-				<artifactId>maven-antrun-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>build-war</id>
-						<phase>install</phase>
-						<goals>
-							<goal>run</goal>
-						</goals>
-						<configuration>
-							<tasks>
-								<echo>######### Tar File #########</echo>
-						        <tar destfile="./target/guide.tar" compression="gzip">
-						            <fileset dir="./target/guide"/>
-						        </tar>
-								<delete verbose="true" includeemptydirs="true">
-						            <fileset dir="./target/guide">
-						                <include name="**/*.pack.*"/>
-						            </fileset>
-						        </delete>
-							</tasks>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-		<defaultGoal>install</defaultGoal>
-	</build>
-	<dependencies>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>${servlet.api.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>jsp-api</artifactId>
-			<version>${jsp.api.version}</version>
-			<scope>provided</scope>
-		</dependency>
-	</dependencies>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.itrip.guide.war</groupId>
+    <artifactId>com-itrip-guide-war</artifactId>
+    <packaging>pom</packaging>
+    <name>com-itrip-guide-war</name>
+    <version>1.0</version>
+    <description>itrip guide</description>
+    <url>http://www.itrip.com/</url>
+    <properties>
+        <warbase>target/guide</warbase>
+        <jsp.api.version>2.2</jsp.api.version>
+        <servlet.api.version>2.5</servlet.api.version>
+    </properties>
+    <build>
+        <plugins>
+            <!-- 生成WAR包 -->
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>build-war</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <tasks>
+                                <echo>######### Tar File #########</echo>
+                                <tar destfile="./target/ROOT.war" compression="gzip">
+                                    <fileset dir="./target/guide"/>
+                                </tar>
+                                <delete verbose="true" includeemptydirs="true">
+                                    <fileset dir="./target/guide">
+                                        <include name="**/*.pack.*"/>
+                                    </fileset>
+                                </delete>
+                            </tasks>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <defaultGoal>install</defaultGoal>
+    </build>
+    <dependencies>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>${servlet.api.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>${jsp.api.version}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 </project>

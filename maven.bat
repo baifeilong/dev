@@ -1,2 +1,2 @@
-@echo 正在编译项目
+@echo begin clean and install project
 mvn clean install
