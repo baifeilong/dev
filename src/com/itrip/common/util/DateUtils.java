@@ -15,6 +15,7 @@ public class DateUtils {
     public static SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
     public static SimpleDateFormat format1 = new SimpleDateFormat("yyyyMMdd HH:mm:ss");
     public static final String CHINA_DATE = "yyyy年MM月dd日";
+    public static final String yyyyMMddHHmmss = "yyyyMMddHHmmss";
 
     /**
      * 获取当前日期
@@ -23,6 +24,13 @@ public class DateUtils {
      */
     public static String getNowCHSDate() {
         return format(new Date(), CHINA_DATE);
+    }
+
+    /**
+     * @return now datetime format yyyyMMddHHmmss
+     */
+    public static String getNowDateTime() {
+        return format(new Date(), yyyyMMddHHmmss);
     }
 
     /**

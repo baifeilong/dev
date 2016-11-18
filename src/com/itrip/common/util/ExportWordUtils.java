@@ -35,8 +35,8 @@ public class ExportWordUtils {
             log.error("文件名编码出错！");
         }
         //给文件名加上时间戳
-        fileName += DateFormatUtils.formatDate(new Date()) + ".doc";
-        response.addHeader("Content-disposition", "filename=" + fileName + ";charset=UTF-8");
+        fileName += DateUtils.getNowDateTime() + ".doc";
+        response.addHeader("Content-disposition", "filename=\"" + fileName + "\";charset=UTF-8");
         Template template = null;
         try {
             //设置模本装置方法和路径，默认指定在/resources/exportWord目录下

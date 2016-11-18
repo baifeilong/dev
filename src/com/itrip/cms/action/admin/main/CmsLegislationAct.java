@@ -41,18 +41,13 @@ public class CmsLegislationAct {
     }
 
     @RequestMapping("/exportWord.do")
-    public String exportWord(Integer id, HttpServletRequest request, HttpServletResponse response, ModelMap model) {
-        WebErrors errors = validateEdit(id, request);
-        if (errors.hasErrors()) {
-            return errors.showErrorPage(model);
-        }
+    public void exportWord(Integer id, HttpServletRequest request, HttpServletResponse response) {
         CmsLegislation legislation = manager.findById(id);
         legislation.setWordTime(DateUtils.getNowCHSDate());
         Map<String, CmsLegislation> dataMap = new HashMap<String, CmsLegislation>();
         dataMap.put("bean", legislation);
         String tplPath = realPathResolver.get("/WEB-INF/word_tpls");
         ExportWordUtils.createDoc("被执行人财产状况表", "legislation.xml", tplPath, dataMap, response);
-        return null;
     }
 
     @RequestMapping("/v_list.do")
